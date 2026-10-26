@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+:root {
+  /* Brand palette — deep midnight tech aesthetic with Karka heritage purple */
+  --color-bg-primary: #060913;
+  --color-bg-secondary: #0A0F22;
+  --color-bg-card: rgba(14, 22, 53, 0.6);
+  --color-bg-card-hover: rgba(22, 34, 78, 0.75);
+
+  --color-accent-cyan: #22D3EE;
+  --color-accent-blue: #3B82F6;
+  --color-accent-purple: #A855F7;
+  --color-accent-pink: #EC4899;
+  --color-karka-brand: #4a044e;
+  --color-karka-brand-light: #7c2d82;
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #8492A6;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-hover: rgba(255, 255, 255, 0.25);
+
+  /* Spacing */
+  --space-section: clamp(4rem, 8vw, 7rem);
+
+  /* Radii */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-3d: cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-base: 0.3s var(--ease-spring);
+  --transition-3d: 0.4s var(--ease-3d);
+}
+
+/* ─── Global Resets ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  perspective: 1200px;
+}
+
+/* ─── LIQUID GLASS DESIGN SYSTEM ─── */
+.liquid-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.2),
+    0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  transition: all var(--transition-3d);
+}
+
+.liquid-glass:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.4),
+    0 25px 50px -15px rgba(34, 211, 238, 0.2),
+    0 0 30px -5px rgba(168, 85, 247, 0.2);
+}
+
+.liquid-glass-accent {
+  background: linear-gradient(135deg, rgba(74, 4, 78, 0.3) 0%, rgba(14, 22, 53, 0.5) 100%);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
+    0 20px 40px -15px rgba(74, 4, 78, 0.4);
+}
+
+.liquid-glass-pill {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ─── FLUID MORPHING AMBIENT ORBS ─── */
+@keyframes fluid-blob-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+    border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%;
+  }
+}
+
+@keyframes fluid-blob-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
+  }
+  50% {
+    transform: translate(-40px, -30px) scale(1.15);
+    border-radius: 60% 40% 30% 70% / 70% 40% 60% 30%;
+  }
+}
+
+.liquid-orb-cyan {
+  animation: fluid-blob-1 18s ease-in-out infinite;
+}
+
+.liquid-orb-purple {
+  animation: fluid-blob-2 22s ease-in-out infinite;
+}
+
+/* ─── 3D Perspective Utilities ─── */
+.perspective-1000 {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.perspective-1500 {
+  perspective: 1500px;
+  -webkit-perspective: 1500px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+/* ─── Focus Styles ─── */
+:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: var(--color-text-primary);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #17224d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-cyan);
+}
+
+/* ─── Gradient Text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-blue), var(--color-accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-karka {
+  background: linear-gradient(135deg, #f472b6, #c084fc, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Logo Marquee ─── */
+@keyframes scroll-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: scroll-marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-reverse {
+  animation: scroll-marquee-reverse 36s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+.animation-paused {
+  animation-play-state: paused !important;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee {
+    animation: none;
+  }
+  .liquid-orb-cyan, .liquid-orb-purple {
+    animation: none;
+  }
+}
